@@ -1,85 +1,189 @@
 import React, { FormEvent, useState } from "react";
 import api from "./services/api";
 import styled from "styled-components";
+import { BandDetails } from "./components/BandDetails/BandDetails";
+import { Header } from "./components/Header/Header";
+import GlobalStyle from "./styles/global";
+import { Search } from "./components/Search/Search";
+import { Videolist } from "./components/VideoList/VideoList";
 
-export const Search = styled.form<{
-  hasList: boolean;
-}>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: ${(props) => (props.hasList ? "100vh" : "10vh")};
-  background-color: blue;
-`;
+export type InfoSearchProps = {
+  id: {
+    videoId: string;
+  };
+  snippet: {
+    channelId: string;
+    channelTitle: string;
+    title: string;
+    description: string;
+    thumbnails: {
+      default: { url: string };
+    };
+    rating: number;
+  };
+};
 
-export default function App() {
-  const [search, setSearch] = useState<string>("");
-  const [videoList, setVideoList] = useState<
-    {
-      id: {
-        videoId: string;
-      };
-      snippet: {
-        channelId: string;
-        channelTitle: string;
-        title: string;
-        description: string;
-        thumbnails: {
-          default: { url: string };
-        };
-        rating: number;
-      };
-    }[]
-  >(() => {
+export const App = () => {
+  const [videoList, setVideoList] = useState<InfoSearchProps[]>(() => {
     const storagedVideoList = localStorage.getItem("@videoList");
 
     if (storagedVideoList) {
       return JSON.parse(storagedVideoList);
     }
-    return [];
+    return [
+      {
+        id: {
+          videoId: "11231",
+        },
+        snippet: {
+          channelId: "12313",
+          channelTitle: "Cazé",
+          title: "Cazé",
+          description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
+          thumbnails: {
+            default: {
+              url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
+            },
+          },
+          rating: 0,
+        },
+      },
+      {
+        id: {
+          videoId: "11231",
+        },
+        snippet: {
+          channelId: "12313",
+          channelTitle: "Cazé",
+          title: "Cazé",
+          description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
+          thumbnails: {
+            default: {
+              url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
+            },
+          },
+          rating: 0,
+        },
+      },
+      {
+        id: {
+          videoId: "11231",
+        },
+        snippet: {
+          channelId: "12313",
+          channelTitle: "Cazé",
+          title: "Cazé",
+          description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
+          thumbnails: {
+            default: {
+              url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
+            },
+          },
+          rating: 0,
+        },
+      },
+      {
+        id: {
+          videoId: "11231",
+        },
+        snippet: {
+          channelId: "12313",
+          channelTitle: "Cazé",
+          title: "Cazé",
+          description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
+          thumbnails: {
+            default: {
+              url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
+            },
+          },
+          rating: 0,
+        },
+      },
+      {
+        id: {
+          videoId: "11231",
+        },
+        snippet: {
+          channelId: "12313",
+          channelTitle: "Cazé",
+          title: "Cazé",
+          description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
+          thumbnails: {
+            default: {
+              url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
+            },
+          },
+          rating: 0,
+        },
+      },
+      {
+        id: {
+          videoId: "11231",
+        },
+        snippet: {
+          channelId: "12313",
+          channelTitle: "Cazé",
+          title: "Cazé",
+          description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
+          thumbnails: {
+            default: {
+              url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
+            },
+          },
+          rating: 0,
+        },
+      },
+    ];
   });
 
-  let youTubeUrl =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&videoCategoryId=10";
-  const queryString = "";
-  const maxResults = 20;
+  const hasVideoList = videoList.length > 0;
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    try {
-      const response = await api.get(
-        `${youTubeUrl}&maxResults=${maxResults}&q=${search}&type=video&key=${process.env.GOOGLE_API_KEY}`
-      );
-      console.log(response.data.items);
-      setVideoList(response.data.items);
-    } catch (err) {
-      console.log(err);
-    }
-  }
   return (
-    <>
-      <Search onSubmit={handleSubmit} hasList={videoList.length <= 0}>
-        <input
-          value={search}
-          placeholder="Search..."
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <button type="submit">Search</button>
-      </Search>
-      <div>
-        {videoList.map((video) => (
-          <div key={video.id.videoId}>
-            <h2>{video.snippet.title}</h2>
-            <a href={`https://www.youtube.com/watch?v=${video.id.videoId}`}>
-              <img
-                src={video.snippet.thumbnails.default.url}
-                alt={video.snippet.title}
-              />
-            </a>
-            <p>{video.snippet.description}</p>
-          </div>
-        ))}
-      </div>
-    </>
+    <Page>
+      <Header hasVideoList={hasVideoList} />
+      <Container hasVideoList={hasVideoList}>
+        <Search hasVideoList={hasVideoList} setVideoList={setVideoList} />
+        {hasVideoList && (
+          <Content>
+            <BandDetails />
+            <Videolist videoList={videoList} />
+          </Content>
+        )}
+        <GlobalStyle />
+      </Container>
+    </Page>
   );
-}
+};
+
+const Page = styled.div`
+  height: 100vh;
+`;
+
+const Container = styled.div<{
+  hasVideoList: boolean;
+}>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  @media (max-width: 770px) {
+    flex-direction: column;
+  }
+`;
+
+const Content = styled.div`
+  display: flex;
+  align-items: flex-start;
+
+  @media (max-width: 770px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (max-width: 375px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
