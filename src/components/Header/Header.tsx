@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import logo from "../../assets/Ion_Logo_Color_Tagline.svg";
-import { Search } from "../Search/Search";
 
 const Container = styled.div`
   display: flex;
@@ -24,14 +23,10 @@ const Logo = styled.img`
   width: 5rem;
 `;
 
-type HeaderProps = {
-  hasVideoList: boolean;
-};
-
-export const Header = ({ hasVideoList }: HeaderProps) => {
+export const Header = () => {
   return (
     <Container>
-      <Logo src={logo} alt="IonLogo" /> <Title>Search Band</Title>
+      <Logo src={logo} alt="IonLogo" /> <Title>Search your favorite Band</Title>
     </Container>
   );
 };

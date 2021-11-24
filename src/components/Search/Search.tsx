@@ -2,13 +2,19 @@ import { darken } from "polished";
 import { FormEvent, useState } from "react";
 import styled from "styled-components";
 import api from "../../services/api";
+import { BandDetailsSearchProps } from "../Dashboard/Dashboard";
 
 type SearchProps = {
   hasVideoList: boolean;
   setVideoList: (videoList: any) => void;
+  setBandDetails: (bandDetail: any) => void;
 };
 
-export const Search = ({ hasVideoList, setVideoList }: SearchProps) => {
+export const Search = ({
+  hasVideoList,
+  setVideoList,
+  setBandDetails,
+}: SearchProps) => {
   const [searchVideo, setSearchVideo] = useState<string>("");
   // GET YOUTUBE DATA
 
@@ -25,14 +31,15 @@ export const Search = ({ hasVideoList, setVideoList }: SearchProps) => {
   async function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
-      const responseYoutube = await api.get(
-        `${youTubeUrl}&maxResults=${maxResults}&q=${searchVideo}&type=video&key=${process.env.GOOGLE_API_KEY}`
-      );
-
-      const responseTicketMaster = await api.get(
+      const responseTicketMaster = await api.get<BandDetailsSearchProps>(
         `${ticketMasterUrl}?size=1&keyword=${searchVideo}&apikey=${process.env.TICKET_MASTER_API_KEY}`
       );
       console.log(responseTicketMaster.data);
+      setBandDetails(responseTicketMaster.data);
+
+      const responseYoutube = await api.get(
+        `${youTubeUrl}&maxResults=${maxResults}&q=${searchVideo}&type=video&key=${process.env.GOOGLE_API_KEY}`
+      );
 
       setVideoList(responseYoutube.data.items);
     } catch (err) {
@@ -48,18 +55,20 @@ export const Search = ({ hasVideoList, setVideoList }: SearchProps) => {
   }
 
   return (
-    <>
-      <Container onSubmit={handleSearchSubmit} hasVideoList={hasVideoList}>
-        <Input
-          value={searchVideo}
-          placeholder="Search..."
-          onChange={(e) => setSearchVideo(e.target.value)}
-        />
-        <Button type="submit" hasVideoList={hasVideoList}>
-          Search
-        </Button>
-      </Container>
-    </>
+    <Container
+      onSubmit={handleSearchSubmit}
+      hasVideoList={hasVideoList}
+      role="search"
+    >
+      <Input
+        value={searchVideo}
+        placeholder="Search..."
+        onChange={(e) => setSearchVideo(e.target.value)}
+      />
+      <Button type="submit" hasVideoList={hasVideoList}>
+        Search
+      </Button>
+    </Container>
   );
 };
 

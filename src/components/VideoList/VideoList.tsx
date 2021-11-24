@@ -1,14 +1,14 @@
 import { darken } from "polished";
 import styled from "styled-components";
-import { InfoSearchProps } from "../../App";
+import { InfoSearchProps } from "../Dashboard/Dashboard";
 
 type VideoListProps = {
   videoList: Array<InfoSearchProps>;
 };
 
-export const Videolist = ({ videoList }: VideoListProps) => {
+export const VideoList = ({ videoList }: VideoListProps) => {
   return (
-    <Container>
+    <Container role="video-list">
       {videoList.map((video: InfoSearchProps) => (
         <Content key={video.id.videoId}>
           <a href={`https://www.youtube.com/watch?v=${video.id.videoId}`}>

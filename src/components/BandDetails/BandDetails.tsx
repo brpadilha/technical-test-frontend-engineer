@@ -1,55 +1,56 @@
 import React from "react";
-import { Carousel } from "react-responsive-carousel";
 import styled from "styled-components";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FaInstagram, FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa";
+import { BandDetailsSearchProps } from "../Dashboard/Dashboard";
 
 type BandDetailsProps = {
-  bandName: string;
+  bandDetails: BandDetailsSearchProps;
 };
 
-export const BandDetails = () => {
+export const BandDetails = ({ bandDetails }: BandDetailsProps) => {
+  const bandDetailsCleaned = bandDetails._embedded.attractions[0];
+
   return (
-    <Container>
+    <Container role="band-details">
       <BandDetailsContent>
         <div>
-          <h1>Anitta</h1>
-          <p>Genre:World</p>
-          <p>Sub Genre: Latin Pop</p>
+          <h1>{bandDetailsCleaned.name}</h1>
+          <p>
+            Genre:
+            {bandDetailsCleaned.classifications[0].genre.name}
+          </p>
+          <p>
+            Sub Genre: {bandDetailsCleaned.classifications[0].subGenre.name}
+          </p>
         </div>
         <SocialMedia>
-          <a href="https://www.instagram.com/anittaflores/?hl=pt-br">
-            <FaInstagram size={20} />
-          </a>
-          <a href="https://www.instagram.com/anittaflores/?hl=pt-br">
-            <FaFacebook size={20} />
-          </a>
-          <a href="https://www.instagram.com/anittaflores/?hl=pt-br">
-            <FaTwitter size={20} />
-          </a>
-          <a href="https://www.instagram.com/anittaflores/?hl=pt-br">
-            <FaYoutube size={20} />
-          </a>
+          {bandDetailsCleaned.extraLinks?.facebook && (
+            <a href={bandDetailsCleaned.extraLinks.facebook[0].url}>
+              <FaFacebook size={20} />
+            </a>
+          )}
+          {bandDetailsCleaned.extraLinks?.twitter && (
+            <a href={bandDetailsCleaned.extraLinks.twitter[0].url}>
+              <FaTwitter size={20} />
+            </a>
+          )}
+          {bandDetailsCleaned.extraLinks?.youtube && (
+            <a href={bandDetailsCleaned.extraLinks.youtube[0].url}>
+              <FaYoutube size={20} />
+            </a>
+          )}
+          {bandDetailsCleaned.extraLinks?.instagram && (
+            <a href={bandDetailsCleaned.extraLinks.instagram[0].url}>
+              <FaInstagram size={20} />
+            </a>
+          )}
         </SocialMedia>
       </BandDetailsContent>
-      <Carousel showThumbs={false}>
-        <Image
-          src="https://s1.ticketm.net/dam/c/548/5fefbd1c-973b-4b0e-9b2e-d78e4ce37548_106111_TABLET_LANDSCAPE_LARGE_16_9.jpg"
-          alt="Anitta"
-        />
-        <Image
-          src="https://s1.ticketm.net/dam/c/548/5fefbd1c-973b-4b0e-9b2e-d78e4ce37548_106111_TABLET_LANDSCAPE_LARGE_16_9.jpg"
-          alt="Anitta"
-        />
-        <Image
-          src="https://s1.ticketm.net/dam/c/548/5fefbd1c-973b-4b0e-9b2e-d78e4ce37548_106111_TABLET_LANDSCAPE_LARGE_16_9.jpg"
-          alt="Anitta"
-        />
-        <Image
-          src="https://s1.ticketm.net/dam/c/548/5fefbd1c-973b-4b0e-9b2e-d78e4ce37548_106111_TABLET_LANDSCAPE_LARGE_16_9.jpg"
-          alt="Anitta"
-        />
-      </Carousel>
+
+      <Image
+        src={bandDetailsCleaned.images[1].url}
+        alt={bandDetailsCleaned.name}
+      />
     </Container>
   );
 };
@@ -57,7 +58,7 @@ export const BandDetails = () => {
 const BandDetailsContent = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const SocialMedia = styled.div`
@@ -91,7 +92,8 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  width: 3rem;
+  width: -webkit-fill-available;
   height: auto;
   margin: 1rem;
+  border-radius: 0.5rem;
 `;
