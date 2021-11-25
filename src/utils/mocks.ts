@@ -6,16 +6,16 @@ import {
 export const YOUTUBE_API_MOCK: InfoSearchProps[] = [
   {
     id: {
-      videoId: "11231",
+      videoId: "1",
     },
     snippet: {
-      channelId: "12313",
-      channelTitle: "Cazé",
-      title: "Cazé",
-      description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
+      channelId: "2",
+      channelTitle: "Rammstein",
+      title: "Rammstein - Deutchland (Official Video)",
+      description: "New Album: https://www.rammstein.com",
       thumbnails: {
         default: {
-          url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
+          url: "https://i.ytimg.com/vi/NeQM1c-XCDc/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCGzhewOrANO4fvR0JVH1rh2NhEyg",
         },
       },
       rating: 0,
@@ -23,84 +23,18 @@ export const YOUTUBE_API_MOCK: InfoSearchProps[] = [
   },
   {
     id: {
-      videoId: "11231",
+      videoId: "3",
     },
     snippet: {
-      channelId: "12313",
+      channelId: "4",
       channelTitle: "Cazé",
       title: "Cazé",
-      description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
+      description:
+        "Website: http://www.rammstein.com ▻ Shop: http://shop.rammstein.de Premiere: January 29, 2001 Shoot: 13th to 15th January, 2001 Location: Babelsberger ...",
+
       thumbnails: {
         default: {
-          url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
-        },
-      },
-      rating: 0,
-    },
-  },
-  {
-    id: {
-      videoId: "11231",
-    },
-    snippet: {
-      channelId: "12313",
-      channelTitle: "Cazé",
-      title: "Cazé",
-      description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
-      thumbnails: {
-        default: {
-          url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
-        },
-      },
-      rating: 0,
-    },
-  },
-  {
-    id: {
-      videoId: "11231",
-    },
-    snippet: {
-      channelId: "12313",
-      channelTitle: "Cazé",
-      title: "Cazé",
-      description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
-      thumbnails: {
-        default: {
-          url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
-        },
-      },
-      rating: 0,
-    },
-  },
-  {
-    id: {
-      videoId: "11231",
-    },
-    snippet: {
-      channelId: "12313",
-      channelTitle: "Cazé",
-      title: "Cazé",
-      description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
-      thumbnails: {
-        default: {
-          url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
-        },
-      },
-      rating: 0,
-    },
-  },
-  {
-    id: {
-      videoId: "11231",
-    },
-    snippet: {
-      channelId: "12313",
-      channelTitle: "Cazé",
-      title: "Cazé",
-      description: "HAUSHUSAHUDAS hhhd hhahashud hduasdhausdhasudas",
-      thumbnails: {
-        default: {
-          url: "https://i.ytimg.com/an_webp/wDwZcajURR8/mqdefault_6s.webp?du=3000&sqp=CO_g9IwG&rs=AOn4CLAQBnfN2dK6KsOGI334VHrMwLwUYw",
+          url: "https://i.ytimg.com/vi/NeQM1c-XCDc/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCGzhewOrANO4fvR0JVH1rh2NhEyg",
         },
       },
       rating: 0,

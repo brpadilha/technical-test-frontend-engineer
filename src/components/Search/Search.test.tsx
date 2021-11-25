@@ -16,21 +16,4 @@ describe("Search component", () => {
     );
     expect(getByRole("button", { name: "Search" })).toBeInTheDocument();
   });
-
-  it('should be able to receive a handler for the "Search" button and execute it upon click', () => {
-    const handleSearchSubmit = jest.fn();
-    const { getByRole } = render(
-      <Search
-        hasVideoList={hasVideoList}
-        setVideoList={setVideoList}
-        setBandDetails={setBandDetails}
-      />
-    );
-
-    const okButton = getByRole("button", { name: "Search" });
-
-    fireEvent.click(okButton);
-
-    expect(handleSearchSubmit).toBeCalled();
-  });
 });
