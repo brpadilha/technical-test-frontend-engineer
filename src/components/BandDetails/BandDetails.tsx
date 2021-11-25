@@ -4,11 +4,11 @@ import { BandDetailsSearchProps } from "../Dashboard/Dashboard";
 import { BandDetailsContent, Container, SocialMedia, Image } from "./styles";
 
 type BandDetailsProps = {
-  bandDetails: BandDetailsSearchProps;
+  band: BandDetailsSearchProps;
 };
 
-export const BandDetails = ({ bandDetails }: BandDetailsProps) => {
-  const bandDetailsCleaned = bandDetails._embedded.attractions[0];
+export const BandDetails = ({ band }: BandDetailsProps) => {
+  const bandDetailsCleaned = band._embedded.attractions[0];
 
   return (
     <Container role="band-details">

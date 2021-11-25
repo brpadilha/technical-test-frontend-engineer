@@ -71,7 +71,7 @@ export const Dashboard = () => {
       />
       {videoList && (
         <Content>
-          {bandDetails && <BandDetails bandDetails={bandDetails} />}
+          {bandDetails && <BandDetails band={bandDetails} />}
           <VideoList videoList={videoList} />
         </Content>
       )}

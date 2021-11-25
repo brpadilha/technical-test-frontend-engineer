@@ -2,6 +2,8 @@ import { fireEvent, render } from "@testing-library/react";
 import { screen } from "@testing-library/dom";
 
 import { Search } from "../Search/Search";
+import { BandDetails } from "../BandDetails/BandDetails";
+import { TICKET_MASTER_API_MOCK } from "../../utils/mocks";
 
 describe("Dashboard component", () => {
   const hasVideoList = false;
@@ -18,14 +20,16 @@ describe("Dashboard component", () => {
     expect(getByRole("search")).toBeInTheDocument();
   });
   it("should search a band named Rammstein and render a title with Rammstein", () => {
-    const input = screen.getByPlaceholderText("Search...");
-    const { getByText, getByRole } = render(
+    const { getByRole } = render(
       <Search
         hasVideoList={hasVideoList}
         setVideoList={setVideoList}
         setBandDetails={setBandDetails}
       />
     );
+
+    const { getByText } = render(<BandDetails band={TICKET_MASTER_API_MOCK} />);
+    const input = screen.getByPlaceholderText("Search...");
 
     fireEvent.change(input, {
       target: { value: "Rammstein" },
